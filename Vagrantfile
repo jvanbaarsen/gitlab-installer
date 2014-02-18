@@ -12,11 +12,11 @@ Vagrant.configure("2") do |config|
     # Uncomment if you use SSL
     # config.vm.network :forwarded_port, guest: 443, host: 443
 
-    config.vm.provision :shell, :path => "install-gitlab.sh"
+    # config.vm.provision :shell, :path => "install-gitlab.sh"
 
     # Uncomment these if you want CI too
     config.vm.provision :shell, :path => "install-gitlab-ci.sh"
-    # config.vm.network :forwarded_port, guest: 3000, host: 3000
+    config.vm.network :forwarded_port, guest: 3000, host: 3000
 
     # CI Runner cannot be automated in a full install as it needs a token from CI
     # Install it (from here to by hand), then go to ~gitlab_ci_runner/gitlab-ci-runner

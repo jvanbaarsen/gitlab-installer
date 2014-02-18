@@ -6,7 +6,7 @@
 
 
 # CI version to install (git tag/branch)
-TARGET_VERSION="v4.2.2"
+TARGET_VERSION="to-unicorn"
 
 # MySQL root password (will be used, not written)
 MYSQL_ROOT_PASSWORD="mysqlpass"
@@ -15,7 +15,7 @@ MYSQL_ROOT_PASSWORD="mysqlpass"
 MYSQL_GITLABCI_PASSWORD="gitlabcipass"
 
 # Gitlab address
-GITLABCI_GITLAB_SERVER="http://127.0.0.1"
+GITLABCI_GITLAB_SERVER="http://stark.logiconline.nl"
 
 # email
 GITLABCI_EMAIL="no-reply@gitlabci.invalid"
@@ -100,7 +100,7 @@ EOF
 
 # install gitlab-ci
 cd $CIHOME
-$CISUDO git clone https://github.com/gitlabhq/gitlab-ci.git
+$CISUDO git clone https://github.com/jvanbaarsen/gitlab-ci.git
 cd gitlab-ci
 $CISUDO git checkout $TARGET_VERSION
 
@@ -110,7 +110,7 @@ $CISUDO sed -i "s,- 'https://dev.gitlab.org/',- '$GITLABCI_GITLAB_SERVER'," conf
 $CISUDO sed -i '/staging.gitlab.org/d' config/application.yml
 
 # configure puma
-$CISUDO cp config/puma.rb.example config/puma.rb
+$CISUDO cp config/unicorn.rb.example config/unicorn.rb
 
 # configure db
 $CISUDO cp config/database.yml.mysql config/database.yml
